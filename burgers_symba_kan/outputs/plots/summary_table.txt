@@ -1,0 +1,15 @@
+SYMBA ENHANCED LIE-SYMMETRY BENCHMARK v3 -- BURGERS (FULL RUN)
+==============================================================================
+Shared baseline relative-L2 : 0.0099
+Selected ALL order          : reflect -> galilean -> scale -> colehopf
+TOP-2 merge order           : reflect -> galilean
+
+arm                            order                                oracle  learned   vs base
+---------------------------------------------------------------------------------------------
+ALL merged                     refl->gali->scal->cole               0.0184   0.0458   -364.1%
+Galilean only                  gali                                 0.0009   0.1406  -1323.4%
+Reflection only                refl                                 0.0053   0.0053    +46.5%
+Dilation only                  scal                                 0.0341   0.0341   -245.5%
+Cole-Hopf only                 cole                                 0.1097   0.1097  -1010.2%
+Galilean closed-form           gali                                 0.0009   0.0009    +90.7%
+TOP-2 merged                   refl->gali                           0.0009   0.0009    +90.8%

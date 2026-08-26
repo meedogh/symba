@@ -1,0 +1,516 @@
+Device: cuda
+[harness] FULL RUN CONFIG ACTIVE: {'N': 1000, 'S': 512, 'T': 20, 'fno_epochs': 100, 'phase_epochs': 80}
+[ok] cell 0 (cell-001) 0.0s (total 0s)
+[ok] cell 1 (cell-003) 0.0s (total 0s)
+[Check 1] Integer-shift round-trip max abs error: 7.153e-07 (must be ~1e-6)
+        True shift: [3.0, -5.0, 0.0, 40.0, -100.0]
+        Estimated:  [3.0, -5.0, 5.149030535278598e-09, 40.0, -100.0]
+        Confidence: [1.0, 1.0, 1.0, 1.0, 1.0]
+
+[Check 2] Sub-pixel registration max error on fractional shifts: 0.0245px (expect < 0.1px)
+
+Projector + registration sanity checks PASSED.
+[ok] cell 2 (cell-004) 0.0s (total 0s)
+[ok] cell 3 (cell-006) 0.0s (total 0s)
+KdV sample shapes OK: (3, 6, 256)  any NaN: False
+Burgers sample shapes OK: (3, 6, 128)  any NaN: False  max|u|: 1.7734677
+[ok] cell 4 (cell-007) 2.8s (total 3s)
+FNO1d and PhaseNet1d defined.
+[ok] cell 5 (cell-009) 0.0s (total 3s)
+Experiment pipeline ready.
+[ok] cell 6 (cell-011) 0.0s (total 3s)
+Generating KdV soliton dataset...
+KdV data shape: (1000, 21, 512)  NaN/Inf: False False
+
+Generating Burgers dataset (this solves the PDE numerically -- a bit slower)...
+Burgers data shape: (1000, 21, 512)  (generated in 49.3s)  NaN/Inf: False, False
+[ok] cell 7 (cell-013) 58.5s (total 61s)
+
+======================================================================
+KdV solitons: N=1000 T=20 S=512
+======================================================================
+Registration variance-explained (final t): +1.000  mean confidence: 0.154
+Temporal variance reduction from canonicalization: 100.0%
+Split -> train:750 val:100 test:150
+[KdV solitons/phase] epoch 1/80 train=0.00034 val=0.00003
+[KdV solitons/phase] epoch 11/80 train=0.00002 val=0.00002
+[KdV solitons/phase] epoch 21/80 train=0.00002 val=0.00002
+[KdV solitons/phase] epoch 31/80 train=0.00002 val=0.00002
+[KdV solitons/phase] epoch 41/80 train=0.00002 val=0.00002
+[KdV solitons/phase] epoch 51/80 train=0.00002 val=0.00002
+[KdV solitons/phase] epoch 61/80 train=0.00002 val=0.00002
+[KdV solitons/phase] epoch 71/80 train=0.00002 val=0.00002
+[KdV solitons/phase] epoch 80/80 train=0.00002 val=0.00002
+[KdV solitons/baseline] epoch 1/100 train=1.01731 val=0.92256
+[KdV solitons/baseline] epoch 13/100 train=0.02208 val=0.02430
+[KdV solitons/baseline] epoch 25/100 train=0.01536 val=0.02342
+[KdV solitons/baseline] epoch 37/100 train=0.01422 val=0.01220
+[KdV solitons/baseline] epoch 49/100 train=0.01119 val=0.01037
+[KdV solitons/baseline] epoch 61/100 train=0.00716 val=0.00933
+[KdV solitons/baseline] epoch 73/100 train=0.00504 val=0.00520
+[KdV solitons/baseline] epoch 85/100 train=0.00400 val=0.00434
+[KdV solitons/baseline] epoch 97/100 train=0.00366 val=0.00397
+[KdV solitons/baseline] epoch 100/100 train=0.00365 val=0.00397
+[KdV solitons/shape] epoch 1/100 train=1.01104 val=0.92468
+[KdV solitons/shape] epoch 13/100 train=0.02050 val=0.01813
+[KdV solitons/shape] epoch 25/100 train=0.02723 val=0.02483
+[KdV solitons/shape] epoch 37/100 train=0.01468 val=0.02588
+[KdV solitons/shape] epoch 49/100 train=0.00873 val=0.00782
+[KdV solitons/shape] epoch 61/100 train=0.00928 val=0.00971
+[KdV solitons/shape] epoch 73/100 train=0.00660 val=0.00740
+[KdV solitons/shape] epoch 85/100 train=0.00345 val=0.00335
+[KdV solitons/shape] epoch 97/100 train=0.00301 val=0.00290
+[KdV solitons/shape] epoch 100/100 train=0.00297 val=0.00288
+
+--- KdV solitons RESULTS ---
+Baseline FNO:                0.0038
+Symmetry FNO (oracle phase): 0.0026  (+32.2%)
+Symmetry FNO (learned phase):0.0928  (-2316.6%)
+[ok] cell 8 (cell-014) 93.5s (total 155s)
+[ok] cell 9 (enh-code-toolkit) 0.0s (total 155s)
+[Sym 1] reflection involution max abs err: 0.00e+00
+[Sym 2] dilation round-trip relative err: 6.31e-04
+[Sym 3] spectral Cole-Hopf round-trip relative err: 1.74e-06  (v1 trapz/central-diff was ~3e-4)
+[Sym 3b] spectral Cole-Hopf round trip on a DEALIASED TANH SHOCK: 1.66e-06
+[Sym 4] Galilean canonicalization relative err: 1.90e-07
+[Sym 5] fractional shift of a shock -- band-limited: 1.72e+00 vs v1 unfiltered: 1.72e+00
+[Sym 6] conjugated Galilean (log-phi) round-trip relative err: 2.69e-07
+[Sym 7] Cole-Hopf with nonzero mean (DC restored) relative err: 8.33e-07
+
+All symmetry-toolkit v2 checks PASSED.
+[ok] cell 10 (enh-code-checks) 0.0s (total 155s)
+Symmetry runner ready.
+[ok] cell 11 (enh-code-runner) 0.0s (total 155s)
+[Burgers/baseline] epoch 1/100 train=0.91374 val=0.54207
+[Burgers/baseline] epoch 13/100 train=0.02097 val=0.01728
+[Burgers/baseline] epoch 25/100 train=0.01887 val=0.01552
+[Burgers/baseline] epoch 37/100 train=0.01407 val=0.01334
+[Burgers/baseline] epoch 49/100 train=0.01208 val=0.01171
+[Burgers/baseline] epoch 61/100 train=0.01007 val=0.00985
+[Burgers/baseline] epoch 73/100 train=0.00949 val=0.00931
+[Burgers/baseline] epoch 85/100 train=0.00912 val=0.00890
+[Burgers/baseline] epoch 97/100 train=0.00902 val=0.00883
+[Burgers/baseline] epoch 100/100 train=0.00902 val=0.00883
+
+Shared BASELINE (Burgers, raw data): mean relative-L2 = 0.0099
+[ok] cell 12 (enh-code-baseline) 39.8s (total 195s)
+Screening candidate composition orders (short budget, validation-only)...
+[screen:re+ga+sc+co/phase] epoch 1/12 train=0.00381 val=0.00088
+[screen:re+ga+sc+co/phase] epoch 2/12 train=0.00117 val=0.00071
+[screen:re+ga+sc+co/phase] epoch 3/12 train=0.00099 val=0.00070
+[screen:re+ga+sc+co/phase] epoch 4/12 train=0.00092 val=0.00071
+[screen:re+ga+sc+co/phase] epoch 5/12 train=0.00090 val=0.00070
+[screen:re+ga+sc+co/phase] epoch 6/12 train=0.00087 val=0.00070
+[screen:re+ga+sc+co/phase] epoch 7/12 train=0.00084 val=0.00069
+[screen:re+ga+sc+co/phase] epoch 8/12 train=0.00086 val=0.00068
+[screen:re+ga+sc+co/phase] epoch 9/12 train=0.00083 val=0.00068
+[screen:re+ga+sc+co/phase] epoch 10/12 train=0.00084 val=0.00069
+[screen:re+ga+sc+co/phase] epoch 11/12 train=0.00082 val=0.00068
+[screen:re+ga+sc+co/phase] epoch 12/12 train=0.00079 val=0.00068
+[screen:re+ga+sc+co/shape] epoch 1/15 train=1.41694 val=1.04106
+[screen:re+ga+sc+co/shape] epoch 2/15 train=0.98500 val=0.84529
+[screen:re+ga+sc+co/shape] epoch 3/15 train=0.49623 val=0.21598
+[screen:re+ga+sc+co/shape] epoch 4/15 train=0.17244 val=0.21098
+[screen:re+ga+sc+co/shape] epoch 5/15 train=0.15619 val=0.13513
+[screen:re+ga+sc+co/shape] epoch 6/15 train=0.12036 val=0.11539
+[screen:re+ga+sc+co/shape] epoch 7/15 train=0.10076 val=0.08461
+[screen:re+ga+sc+co/shape] epoch 8/15 train=0.09019 val=0.09330
+[screen:re+ga+sc+co/shape] epoch 9/15 train=0.08067 val=0.08160
+[screen:re+ga+sc+co/shape] epoch 10/15 train=0.07628 val=0.08020
+[screen:re+ga+sc+co/shape] epoch 11/15 train=0.07582 val=0.07405
+[screen:re+ga+sc+co/shape] epoch 12/15 train=0.07122 val=0.07166
+[screen:re+ga+sc+co/shape] epoch 13/15 train=0.07063 val=0.07410
+[screen:re+ga+sc+co/shape] epoch 14/15 train=0.06875 val=0.06914
+[screen:re+ga+sc+co/shape] epoch 15/15 train=0.06776 val=0.06891
+  reflect -> galilean -> scale -> colehopf: 0.0489
+[screen:re+ga+co+sc/phase] epoch 1/12 train=0.00412 val=0.00085
+[screen:re+ga+co+sc/phase] epoch 2/12 train=0.00120 val=0.00071
+[screen:re+ga+co+sc/phase] epoch 3/12 train=0.00105 val=0.00069
+[screen:re+ga+co+sc/phase] epoch 4/12 train=0.00097 val=0.00068
+[screen:re+ga+co+sc/phase] epoch 5/12 train=0.00092 val=0.00069
+[screen:re+ga+co+sc/phase] epoch 6/12 train=0.00089 val=0.00068
+[screen:re+ga+co+sc/phase] epoch 7/12 train=0.00086 val=0.00069
+[screen:re+ga+co+sc/phase] epoch 8/12 train=0.00083 val=0.00068
+[screen:re+ga+co+sc/phase] epoch 9/12 train=0.00084 val=0.00068
+[screen:re+ga+co+sc/phase] epoch 10/12 train=0.00086 val=0.00069
+[screen:re+ga+co+sc/phase] epoch 11/12 train=0.00086 val=0.00068
+[screen:re+ga+co+sc/phase] epoch 12/12 train=0.00081 val=0.00068
+[screen:re+ga+co+sc/shape] epoch 1/15 train=1.46893 val=1.02863
+[screen:re+ga+co+sc/shape] epoch 2/15 train=0.99265 val=0.89132
+[screen:re+ga+co+sc/shape] epoch 3/15 train=0.51753 val=0.30386
+[screen:re+ga+co+sc/shape] epoch 4/15 train=0.19662 val=0.13990
+[screen:re+ga+co+sc/shape] epoch 5/15 train=0.11746 val=0.11351
+[screen:re+ga+co+sc/shape] epoch 6/15 train=0.10029 val=0.09746
+[screen:re+ga+co+sc/shape] epoch 7/15 train=0.09177 val=0.09377
+[screen:re+ga+co+sc/shape] epoch 8/15 train=0.08709 val=0.09465
+[screen:re+ga+co+sc/shape] epoch 9/15 train=0.08417 val=0.08990
+[screen:re+ga+co+sc/shape] epoch 10/15 train=0.08284 val=0.07947
+[screen:re+ga+co+sc/shape] epoch 11/15 train=0.07907 val=0.07881
+[screen:re+ga+co+sc/shape] epoch 12/15 train=0.07544 val=0.07607
+[screen:re+ga+co+sc/shape] epoch 13/15 train=0.07334 val=0.07394
+[screen:re+ga+co+sc/shape] epoch 14/15 train=0.07192 val=0.07389
+[screen:re+ga+co+sc/shape] epoch 15/15 train=0.07143 val=0.07245
+  reflect -> galilean -> colehopf -> scale: 0.1409
+[screen:re+sc+ga+co/phase] epoch 1/12 train=0.00309 val=0.00079
+[screen:re+sc+ga+co/phase] epoch 2/12 train=0.00108 val=0.00070
+[screen:re+sc+ga+co/phase] epoch 3/12 train=0.00097 val=0.00073
+[screen:re+sc+ga+co/phase] epoch 4/12 train=0.00090 val=0.00073
+[screen:re+sc+ga+co/phase] epoch 5/12 train=0.00088 val=0.00068
+[screen:re+sc+ga+co/phase] epoch 6/12 train=0.00082 val=0.00070
+[screen:re+sc+ga+co/phase] epoch 7/12 train=0.00083 val=0.00068
+[screen:re+sc+ga+co/phase] epoch 8/12 train=0.00082 val=0.00070
+[screen:re+sc+ga+co/phase] epoch 9/12 train=0.00081 val=0.00068
+[screen:re+sc+ga+co/phase] epoch 10/12 train=0.00081 val=0.00068
+[screen:re+sc+ga+co/phase] epoch 11/12 train=0.00079 val=0.00068
+[screen:re+sc+ga+co/phase] epoch 12/12 train=0.00080 val=0.00068
+[screen:re+sc+ga+co/shape] epoch 1/15 train=1.66787 val=1.05169
+[screen:re+sc+ga+co/shape] epoch 2/15 train=1.00430 val=0.96742
+[screen:re+sc+ga+co/shape] epoch 3/15 train=0.64806 val=0.35868
+[screen:re+sc+ga+co/shape] epoch 4/15 train=0.21195 val=0.20620
+[screen:re+sc+ga+co/shape] epoch 5/15 train=0.12863 val=0.10769
+[screen:re+sc+ga+co/shape] epoch 6/15 train=0.09766 val=0.09605
+[screen:re+sc+ga+co/shape] epoch 7/15 train=0.09035 val=0.09077
+[screen:re+sc+ga+co/shape] epoch 8/15 train=0.08725 val=0.08997
+[screen:re+sc+ga+co/shape] epoch 9/15 train=0.07960 val=0.08328
+[screen:re+sc+ga+co/shape] epoch 10/15 train=0.07690 val=0.08694
+[screen:re+sc+ga+co/shape] epoch 11/15 train=0.07892 val=0.07803
+[screen:re+sc+ga+co/shape] epoch 12/15 train=0.07266 val=0.07385
+[screen:re+sc+ga+co/shape] epoch 13/15 train=0.07113 val=0.07094
+[screen:re+sc+ga+co/shape] epoch 14/15 train=0.06961 val=0.07014
+[screen:re+sc+ga+co/shape] epoch 15/15 train=0.06854 val=0.06969
+  reflect -> scale -> galilean -> colehopf: 0.1117
+[screen:re+sc+co+ga/phase] epoch 1/12 train=0.00344 val=0.00085
+[screen:re+sc+co+ga/phase] epoch 2/12 train=0.00113 val=0.00072
+[screen:re+sc+co+ga/phase] epoch 3/12 train=0.00097 val=0.00068
+[screen:re+sc+co+ga/phase] epoch 4/12 train=0.00093 val=0.00068
+[screen:re+sc+co+ga/phase] epoch 5/12 train=0.00087 val=0.00068
+[screen:re+sc+co+ga/phase] epoch 6/12 train=0.00083 val=0.00070
+[screen:re+sc+co+ga/phase] epoch 7/12 train=0.00083 val=0.00068
+[screen:re+sc+co+ga/phase] epoch 8/12 train=0.00082 val=0.00075
+[screen:re+sc+co+ga/phase] epoch 9/12 train=0.00082 val=0.00068
+[screen:re+sc+co+ga/phase] epoch 10/12 train=0.00081 val=0.00068
+[screen:re+sc+co+ga/phase] epoch 11/12 train=0.00080 val=0.00068
+[screen:re+sc+co+ga/phase] epoch 12/12 train=0.00081 val=0.00068
+[screen:re+sc+co+ga/shape] epoch 1/15 train=1.58312 val=1.05530
+[screen:re+sc+co+ga/shape] epoch 2/15 train=1.00560 val=0.97580
+[screen:re+sc+co+ga/shape] epoch 3/15 train=0.76242 val=0.50048
+[screen:re+sc+co+ga/shape] epoch 4/15 train=0.24448 val=0.18343
+[screen:re+sc+co+ga/shape] epoch 5/15 train=0.13391 val=0.12835
+[screen:re+sc+co+ga/shape] epoch 6/15 train=0.10357 val=0.09475
+[screen:re+sc+co+ga/shape] epoch 7/15 train=0.09433 val=0.10740
+[screen:re+sc+co+ga/shape] epoch 8/15 train=0.08705 val=0.09421
+[screen:re+sc+co+ga/shape] epoch 9/15 train=0.08499 val=0.08842
+[screen:re+sc+co+ga/shape] epoch 10/15 train=0.08027 val=0.07869
+[screen:re+sc+co+ga/shape] epoch 11/15 train=0.07631 val=0.07855
+[screen:re+sc+co+ga/shape] epoch 12/15 train=0.07479 val=0.07388
+[screen:re+sc+co+ga/shape] epoch 13/15 train=0.07221 val=0.07432
+[screen:re+sc+co+ga/shape] epoch 14/15 train=0.07083 val=0.07167
+[screen:re+sc+co+ga/shape] epoch 15/15 train=0.06979 val=0.07131
+  reflect -> scale -> colehopf -> galilean: 0.9896
+[screen:re+co+ga+sc/phase] epoch 1/12 train=0.00277 val=0.00076
+[screen:re+co+ga+sc/phase] epoch 2/12 train=0.00105 val=0.00079
+[screen:re+co+ga+sc/phase] epoch 3/12 train=0.00093 val=0.00069
+[screen:re+co+ga+sc/phase] epoch 4/12 train=0.00086 val=0.00072
+[screen:re+co+ga+sc/phase] epoch 5/12 train=0.00086 val=0.00070
+[screen:re+co+ga+sc/phase] epoch 6/12 train=0.00083 val=0.00080
+[screen:re+co+ga+sc/phase] epoch 7/12 train=0.00087 val=0.00070
+[screen:re+co+ga+sc/phase] epoch 8/12 train=0.00080 val=0.00069
+[screen:re+co+ga+sc/phase] epoch 9/12 train=0.00081 val=0.00068
+[screen:re+co+ga+sc/phase] epoch 10/12 train=0.00076 val=0.00068
+[screen:re+co+ga+sc/phase] epoch 11/12 train=0.00078 val=0.00068
+[screen:re+co+ga+sc/phase] epoch 12/12 train=0.00076 val=0.00068
+[screen:re+co+ga+sc/shape] epoch 1/15 train=1.41770 val=1.04141
+[screen:re+co+ga+sc/shape] epoch 2/15 train=0.96906 val=0.76340
+[screen:re+co+ga+sc/shape] epoch 3/15 train=0.41452 val=0.25305
+[screen:re+co+ga+sc/shape] epoch 4/15 train=0.15936 val=0.11032
+[screen:re+co+ga+sc/shape] epoch 5/15 train=0.10847 val=0.10519
+[screen:re+co+ga+sc/shape] epoch 6/15 train=0.09234 val=0.09075
+[screen:re+co+ga+sc/shape] epoch 7/15 train=0.08692 val=0.08631
+[screen:re+co+ga+sc/shape] epoch 8/15 train=0.08215 val=0.08225
+[screen:re+co+ga+sc/shape] epoch 9/15 train=0.07893 val=0.07923
+[screen:re+co+ga+sc/shape] epoch 10/15 train=0.07503 val=0.07353
+[screen:re+co+ga+sc/shape] epoch 11/15 train=0.07176 val=0.07320
+[screen:re+co+ga+sc/shape] epoch 12/15 train=0.07064 val=0.07331
+[screen:re+co+ga+sc/shape] epoch 13/15 train=0.06977 val=0.06929
+[screen:re+co+ga+sc/shape] epoch 14/15 train=0.06764 val=0.06900
+[screen:re+co+ga+sc/shape] epoch 15/15 train=0.06717 val=0.06882
+  reflect -> colehopf -> galilean -> scale: 1.0160
+[screen:re+co+sc+ga/phase] epoch 1/12 train=0.00369 val=0.00086
+[screen:re+co+sc+ga/phase] epoch 2/12 train=0.00119 val=0.00070
+[screen:re+co+sc+ga/phase] epoch 3/12 train=0.00097 val=0.00069
+[screen:re+co+sc+ga/phase] epoch 4/12 train=0.00099 val=0.00083
+[screen:re+co+sc+ga/phase] epoch 5/12 train=0.00094 val=0.00079
+[screen:re+co+sc+ga/phase] epoch 6/12 train=0.00087 val=0.00069
+[screen:re+co+sc+ga/phase] epoch 7/12 train=0.00082 val=0.00068
+[screen:re+co+sc+ga/phase] epoch 8/12 train=0.00083 val=0.00068
+[screen:re+co+sc+ga/phase] epoch 9/12 train=0.00083 val=0.00068
+[screen:re+co+sc+ga/phase] epoch 10/12 train=0.00080 val=0.00068
+[screen:re+co+sc+ga/phase] epoch 11/12 train=0.00080 val=0.00068
+[screen:re+co+sc+ga/phase] epoch 12/12 train=0.00081 val=0.00068
+[screen:re+co+sc+ga/shape] epoch 1/15 train=1.45047 val=1.04741
+[screen:re+co+sc+ga/shape] epoch 2/15 train=0.97927 val=0.80768
+[screen:re+co+sc+ga/shape] epoch 3/15 train=0.45329 val=0.26618
+[screen:re+co+sc+ga/shape] epoch 4/15 train=0.15460 val=0.14486
+[screen:re+co+sc+ga/shape] epoch 5/15 train=0.11835 val=0.11244
+[screen:re+co+sc+ga/shape] epoch 6/15 train=0.09603 val=0.09510
+[screen:re+co+sc+ga/shape] epoch 7/15 train=0.08790 val=0.09437
+[screen:re+co+sc+ga/shape] epoch 8/15 train=0.08490 val=0.08095
+[screen:re+co+sc+ga/shape] epoch 9/15 train=0.08013 val=0.07979
+[screen:re+co+sc+ga/shape] epoch 10/15 train=0.07654 val=0.07635
+[screen:re+co+sc+ga/shape] epoch 11/15 train=0.07363 val=0.07668
+[screen:re+co+sc+ga/shape] epoch 12/15 train=0.07244 val=0.07067
+[screen:re+co+sc+ga/shape] epoch 13/15 train=0.06954 val=0.07021
+[screen:re+co+sc+ga/shape] epoch 14/15 train=0.06829 val=0.06916
+[screen:re+co+sc+ga/shape] epoch 15/15 train=0.06761 val=0.06852
+  reflect -> colehopf -> scale -> galilean: 1.0199
+
+Selected ALL-merged order: reflect -> galilean -> scale -> colehopf
+
+[ALL merged/phase] epoch 1/80 train=0.00287 val=0.00074
+[ALL merged/phase] epoch 11/80 train=0.00075 val=0.00068
+[ALL merged/phase] epoch 21/80 train=0.00076 val=0.00068
+[ALL merged/phase] epoch 31/80 train=0.00072 val=0.00068
+[ALL merged/phase] epoch 41/80 train=0.00070 val=0.00073
+[ALL merged/phase] epoch 51/80 train=0.00068 val=0.00068
+[ALL merged/phase] epoch 61/80 train=0.00069 val=0.00068
+[ALL merged/phase] epoch 71/80 train=0.00068 val=0.00068
+[ALL merged/phase] epoch 80/80 train=0.00068 val=0.00068
+[ALL merged/shape] epoch 1/100 train=1.65132 val=1.03735
+[ALL merged/shape] epoch 13/100 train=0.09304 val=0.13949
+[ALL merged/shape] epoch 25/100 train=0.08187 val=0.08859
+[ALL merged/shape] epoch 37/100 train=0.07363 val=0.09182
+[ALL merged/shape] epoch 49/100 train=0.06354 val=0.06199
+[ALL merged/shape] epoch 61/100 train=0.05410 val=0.05395
+[ALL merged/shape] epoch 73/100 train=0.04599 val=0.04804
+[ALL merged/shape] epoch 85/100 train=0.04077 val=0.03966
+[ALL merged/shape] epoch 97/100 train=0.03800 val=0.03792
+[ALL merged/shape] epoch 100/100 train=0.03789 val=0.03785
+[ALL merged] order=reflect -> galilean -> scale -> colehopf | phase: physics-exact Galilean drift (mean conservation) | t-var reduction: 100.0%
+[ALL merged] oracle=0.0184  learned=0.0458  baseline=0.0099  (-364.1% vs baseline)
+[Galilean only/phase] epoch 1/80 train=0.01437 val=0.01388
+[Galilean only/phase] epoch 11/80 train=0.01397 val=0.01374
+[Galilean only/phase] epoch 21/80 train=0.01391 val=0.01372
+[Galilean only/phase] epoch 31/80 train=0.01389 val=0.01369
+[Galilean only/phase] epoch 41/80 train=0.01386 val=0.01370
+[Galilean only/phase] epoch 51/80 train=0.01378 val=0.01372
+[Galilean only/phase] epoch 61/80 train=0.01371 val=0.01375
+[Galilean only/phase] epoch 71/80 train=0.01369 val=0.01374
+[Galilean only/phase] epoch 80/80 train=0.01372 val=0.01374
+[Galilean only/shape] epoch 1/100 train=0.98016 val=0.70095
+[Galilean only/shape] epoch 13/100 train=0.02317 val=0.02319
+[Galilean only/shape] epoch 25/100 train=0.01754 val=0.01404
+[Galilean only/shape] epoch 37/100 train=0.01386 val=0.01262
+[Galilean only/shape] epoch 49/100 train=0.01002 val=0.00969
+[Galilean only/shape] epoch 61/100 train=0.00863 val=0.00952
+[Galilean only/shape] epoch 73/100 train=0.00594 val=0.00567
+[Galilean only/shape] epoch 85/100 train=0.00548 val=0.00520
+[Galilean only/shape] epoch 97/100 train=0.00532 val=0.00507
+[Galilean only/shape] epoch 100/100 train=0.00531 val=0.00507
+[Galilean only] order=galilean | phase: physics-exact Galilean drift (mean conservation) | t-var reduction: 96.4%
+[Galilean only] oracle=0.0009  learned=0.1406  baseline=0.0099  (-1323.4% vs baseline)
+[Reflection only/phase] epoch 1/80 train=0.01722 val=0.01155
+[Reflection only/phase] epoch 11/80 train=0.01539 val=0.01150
+[Reflection only/phase] epoch 21/80 train=0.01511 val=0.01147
+[Reflection only/phase] epoch 31/80 train=0.01508 val=0.01133
+[Reflection only/phase] epoch 41/80 train=0.01504 val=0.01131
+[Reflection only/phase] epoch 51/80 train=0.01503 val=0.01130
+[Reflection only/phase] epoch 61/80 train=0.01503 val=0.01131
+[Reflection only/phase] epoch 71/80 train=0.01502 val=0.01130
+[Reflection only/phase] epoch 80/80 train=0.01500 val=0.01130
+[Reflection only/shape] epoch 1/100 train=0.86359 val=0.40038
+[Reflection only/shape] epoch 13/100 train=0.02442 val=0.03183
+[Reflection only/shape] epoch 25/100 train=0.01795 val=0.01189
+[Reflection only/shape] epoch 37/100 train=0.00961 val=0.01047
+[Reflection only/shape] epoch 49/100 train=0.00843 val=0.00829
+[Reflection only/shape] epoch 61/100 train=0.00645 val=0.00573
+[Reflection only/shape] epoch 73/100 train=0.00516 val=0.00488
+[Reflection only/shape] epoch 85/100 train=0.00489 val=0.00467
+[Reflection only/shape] epoch 97/100 train=0.00481 val=0.00463
+[Reflection only/shape] epoch 100/100 train=0.00481 val=0.00462
+[Reflection only] order=reflect | phase: registration + linear smoothing (mean conf 0.038) | t-var reduction: 0.0%
+[Reflection only] oracle=0.0053  learned=0.0053  baseline=0.0099  (+46.5% vs baseline)
+[Dilation only/phase] epoch 1/80 train=0.01084 val=0.01072
+[Dilation only/phase] epoch 11/80 train=0.01001 val=0.00990
+[Dilation only/phase] epoch 21/80 train=0.01002 val=0.00987
+[Dilation only/phase] epoch 31/80 train=0.00994 val=0.00989
+[Dilation only/phase] epoch 41/80 train=0.00993 val=0.00996
+[Dilation only/phase] epoch 51/80 train=0.00982 val=0.00988
+[Dilation only/phase] epoch 61/80 train=0.00977 val=0.00990
+[Dilation only/phase] epoch 71/80 train=0.00979 val=0.00992
+[Dilation only/phase] epoch 80/80 train=0.00972 val=0.00992
+[Dilation only/shape] epoch 1/100 train=0.94269 val=0.56677
+[Dilation only/shape] epoch 13/100 train=0.04197 val=0.03948
+[Dilation only/shape] epoch 25/100 train=0.03868 val=0.03870
+[Dilation only/shape] epoch 37/100 train=0.03705 val=0.03732
+[Dilation only/shape] epoch 49/100 train=0.03658 val=0.03724
+[Dilation only/shape] epoch 61/100 train=0.03582 val=0.03667
+[Dilation only/shape] epoch 73/100 train=0.03538 val=0.03606
+[Dilation only/shape] epoch 85/100 train=0.03510 val=0.03594
+[Dilation only/shape] epoch 97/100 train=0.03499 val=0.03581
+[Dilation only/shape] epoch 100/100 train=0.03499 val=0.03581
+[Dilation only] order=scale | phase: registration + linear smoothing (mean conf 0.329) | t-var reduction: -13.9%
+[Dilation only] oracle=0.0341  learned=0.0341  baseline=0.0099  (-245.5% vs baseline)
+[Cole-Hopf only/phase] epoch 1/80 train=0.01541 val=0.01422
+[Cole-Hopf only/phase] epoch 11/80 train=0.01469 val=0.01416
+[Cole-Hopf only/phase] epoch 21/80 train=0.01467 val=0.01416
+[Cole-Hopf only/phase] epoch 31/80 train=0.01465 val=0.01416
+[Cole-Hopf only/phase] epoch 41/80 train=0.01464 val=0.01417
+[Cole-Hopf only/phase] epoch 51/80 train=0.01466 val=0.01416
+[Cole-Hopf only/phase] epoch 61/80 train=0.01465 val=0.01417
+[Cole-Hopf only/phase] epoch 71/80 train=0.01464 val=0.01416
+[Cole-Hopf only/phase] epoch 80/80 train=0.01464 val=0.01416
+[Cole-Hopf only/shape] epoch 1/100 train=1.60298 val=1.06378
+[Cole-Hopf only/shape] epoch 13/100 train=0.66050 val=0.65845
+[Cole-Hopf only/shape] epoch 25/100 train=0.66049 val=0.65437
+[Cole-Hopf only/shape] epoch 37/100 train=0.65708 val=0.65608
+[Cole-Hopf only/shape] epoch 49/100 train=0.65329 val=0.64788
+[Cole-Hopf only/shape] epoch 61/100 train=0.65352 val=0.64886
+[Cole-Hopf only/shape] epoch 73/100 train=0.65227 val=0.64671
+[Cole-Hopf only/shape] epoch 85/100 train=0.65007 val=0.64635
+[Cole-Hopf only/shape] epoch 97/100 train=0.64975 val=0.64597
+[Cole-Hopf only/shape] epoch 100/100 train=0.64964 val=0.64596
+[Cole-Hopf only] order=colehopf | phase: registration + linear smoothing (mean conf 0.021) | t-var reduction: 99.0%
+[Cole-Hopf only] oracle=0.1097  learned=0.1097  baseline=0.0099  (-1010.2% vs baseline)
+[Galilean closed-form/phase] epoch 1/80 train=0.01447 val=0.01385
+[Galilean closed-form/phase] epoch 11/80 train=0.01401 val=0.01375
+[Galilean closed-form/phase] epoch 21/80 train=0.01400 val=0.01375
+[Galilean closed-form/phase] epoch 31/80 train=0.01398 val=0.01377
+[Galilean closed-form/phase] epoch 41/80 train=0.01397 val=0.01375
+[Galilean closed-form/phase] epoch 51/80 train=0.01396 val=0.01376
+[Galilean closed-form/phase] epoch 61/80 train=0.01397 val=0.01376
+[Galilean closed-form/phase] epoch 71/80 train=0.01396 val=0.01375
+[Galilean closed-form/phase] epoch 80/80 train=0.01396 val=0.01376
+[Galilean closed-form/shape] epoch 1/100 train=0.98676 val=0.76129
+[Galilean closed-form/shape] epoch 13/100 train=0.02372 val=0.02172
+[Galilean closed-form/shape] epoch 25/100 train=0.01759 val=0.01561
+[Galilean closed-form/shape] epoch 37/100 train=0.01375 val=0.01340
+[Galilean closed-form/shape] epoch 49/100 train=0.01103 val=0.01202
+[Galilean closed-form/shape] epoch 61/100 train=0.00808 val=0.00772
+[Galilean closed-form/shape] epoch 73/100 train=0.00621 val=0.00580
+[Galilean closed-form/shape] epoch 85/100 train=0.00565 val=0.00533
+[Galilean closed-form/shape] epoch 97/100 train=0.00551 val=0.00520
+[Galilean closed-form/shape] epoch 100/100 train=0.00550 val=0.00520
+[Galilean closed-form] order=galilean | phase: physics-exact Galilean drift (mean conservation) | t-var reduction: 96.4%
+[Galilean closed-form  [closed-form invariant phase]] oracle=0.0009  learned=0.0009  baseline=0.0099  (+90.7% vs baseline)
+
+Top-2 single symmetries by learned error: ['Galilean closed-form', 'Reflection only']
+[screen:re+ga/phase] epoch 1/12 train=0.00441 val=0.00080
+[screen:re+ga/phase] epoch 2/12 train=0.00122 val=0.00068
+[screen:re+ga/phase] epoch 3/12 train=0.00099 val=0.00068
+[screen:re+ga/phase] epoch 4/12 train=0.00095 val=0.00073
+[screen:re+ga/phase] epoch 5/12 train=0.00088 val=0.00068
+[screen:re+ga/phase] epoch 6/12 train=0.00085 val=0.00070
+[screen:re+ga/phase] epoch 7/12 train=0.00086 val=0.00071
+[screen:re+ga/phase] epoch 8/12 train=0.00085 val=0.00068
+[screen:re+ga/phase] epoch 9/12 train=0.00083 val=0.00068
+[screen:re+ga/phase] epoch 10/12 train=0.00082 val=0.00069
+[screen:re+ga/phase] epoch 11/12 train=0.00082 val=0.00068
+[screen:re+ga/phase] epoch 12/12 train=0.00083 val=0.00068
+[screen:re+ga/shape] epoch 1/15 train=0.98935 val=0.80213
+[screen:re+ga/shape] epoch 2/15 train=0.35022 val=0.12653
+[screen:re+ga/shape] epoch 3/15 train=0.10294 val=0.07956
+[screen:re+ga/shape] epoch 4/15 train=0.06321 val=0.04258
+[screen:re+ga/shape] epoch 5/15 train=0.03669 val=0.02898
+[screen:re+ga/shape] epoch 6/15 train=0.02852 val=0.02552
+[screen:re+ga/shape] epoch 7/15 train=0.02405 val=0.02150
+[screen:re+ga/shape] epoch 8/15 train=0.02166 val=0.02232
+[screen:re+ga/shape] epoch 9/15 train=0.02014 val=0.01931
+[screen:re+ga/shape] epoch 10/15 train=0.01858 val=0.01725
+[screen:re+ga/shape] epoch 11/15 train=0.01737 val=0.01637
+[screen:re+ga/shape] epoch 12/15 train=0.01669 val=0.01596
+[screen:re+ga/shape] epoch 13/15 train=0.01634 val=0.01556
+[screen:re+ga/shape] epoch 14/15 train=0.01607 val=0.01531
+[screen:re+ga/shape] epoch 15/15 train=0.01594 val=0.01526
+  reflect -> galilean: 0.0438
+[screen:ga+re/phase] epoch 1/12 train=0.00300 val=0.00080
+[screen:ga+re/phase] epoch 2/12 train=0.00107 val=0.00070
+[screen:ga+re/phase] epoch 3/12 train=0.00095 val=0.00071
+[screen:ga+re/phase] epoch 4/12 train=0.00087 val=0.00068
+[screen:ga+re/phase] epoch 5/12 train=0.00085 val=0.00069
+[screen:ga+re/phase] epoch 6/12 train=0.00082 val=0.00069
+[screen:ga+re/phase] epoch 7/12 train=0.00086 val=0.00068
+[screen:ga+re/phase] epoch 8/12 train=0.00082 val=0.00068
+[screen:ga+re/phase] epoch 9/12 train=0.00081 val=0.00068
+[screen:ga+re/phase] epoch 10/12 train=0.00079 val=0.00068
+[screen:ga+re/phase] epoch 11/12 train=0.00079 val=0.00068
+[screen:ga+re/phase] epoch 12/12 train=0.00078 val=0.00068
+[screen:ga+re/shape] epoch 1/15 train=0.96162 val=0.61072
+[screen:ga+re/shape] epoch 2/15 train=0.28507 val=0.12906
+[screen:ga+re/shape] epoch 3/15 train=0.10309 val=0.08159
+[screen:ga+re/shape] epoch 4/15 train=0.06603 val=0.04678
+[screen:ga+re/shape] epoch 5/15 train=0.03946 val=0.03085
+[screen:ga+re/shape] epoch 6/15 train=0.03210 val=0.02806
+[screen:ga+re/shape] epoch 7/15 train=0.02737 val=0.02329
+[screen:ga+re/shape] epoch 8/15 train=0.02293 val=0.02090
+[screen:ga+re/shape] epoch 9/15 train=0.02181 val=0.02159
+[screen:ga+re/shape] epoch 10/15 train=0.01992 val=0.01857
+[screen:ga+re/shape] epoch 11/15 train=0.01860 val=0.01738
+[screen:ga+re/shape] epoch 12/15 train=0.01781 val=0.01686
+[screen:ga+re/shape] epoch 13/15 train=0.01734 val=0.01657
+[screen:ga+re/shape] epoch 14/15 train=0.01708 val=0.01635
+[screen:ga+re/shape] epoch 15/15 train=0.01697 val=0.01628
+  galilean -> reflect: 1.1191
+[TOP-2 merged (Galilean closed-form + Reflection only)/phase] epoch 1/80 train=0.00316 val=0.00082
+[TOP-2 merged (Galilean closed-form + Reflection only)/phase] epoch 11/80 train=0.00076 val=0.00069
+[TOP-2 merged (Galilean closed-form + Reflection only)/phase] epoch 21/80 train=0.00070 val=0.00068
+[TOP-2 merged (Galilean closed-form + Reflection only)/phase] epoch 31/80 train=0.00070 val=0.00068
+[TOP-2 merged (Galilean closed-form + Reflection only)/phase] epoch 41/80 train=0.00070 val=0.00069
+[TOP-2 merged (Galilean closed-form + Reflection only)/phase] epoch 51/80 train=0.00070 val=0.00068
+[TOP-2 merged (Galilean closed-form + Reflection only)/phase] epoch 61/80 train=0.00068 val=0.00068
+[TOP-2 merged (Galilean closed-form + Reflection only)/phase] epoch 71/80 train=0.00068 val=0.00068
+[TOP-2 merged (Galilean closed-form + Reflection only)/phase] epoch 80/80 train=0.00068 val=0.00068
+[TOP-2 merged (Galilean closed-form + Reflection only)/shape] epoch 1/100 train=0.98200 val=0.71184
+[TOP-2 merged (Galilean closed-form + Reflection only)/shape] epoch 13/100 train=0.02103 val=0.01941
+[TOP-2 merged (Galilean closed-form + Reflection only)/shape] epoch 25/100 train=0.01459 val=0.01369
+[TOP-2 merged (Galilean closed-form + Reflection only)/shape] epoch 37/100 train=0.01349 val=0.01329
+[TOP-2 merged (Galilean closed-form + Reflection only)/shape] epoch 49/100 train=0.01141 val=0.00904
+[TOP-2 merged (Galilean closed-form + Reflection only)/shape] epoch 61/100 train=0.00735 val=0.00722
+[TOP-2 merged (Galilean closed-form + Reflection only)/shape] epoch 73/100 train=0.00608 val=0.00593
+[TOP-2 merged (Galilean closed-form + Reflection only)/shape] epoch 85/100 train=0.00557 val=0.00532
+[TOP-2 merged (Galilean closed-form + Reflection only)/shape] epoch 97/100 train=0.00547 val=0.00521
+[TOP-2 merged (Galilean closed-form + Reflection only)/shape] epoch 100/100 train=0.00546 val=0.00521
+[TOP-2 merged (Galilean closed-form + Reflection only)] order=reflect -> galilean | phase: physics-exact Galilean drift (mean conservation) | t-var reduction: 96.4%
+[TOP-2 merged (Galilean closed-form + Reflection only)  [closed-form invariant phase]] oracle=0.0009  learned=0.0009  baseline=0.0099  (+90.8% vs baseline)
+[ok] cell 13 (enh-code-arms) 506.2s (total 701s)
+[saved] C:\Users\yazaj\OneDrive\Desktop\sym\full_tested_plots_v4\bars_00.png
+[saved] C:\Users\yazaj\OneDrive\Desktop\sym\full_tested_plots_v4\bars_01.png
+[ok] cell 14 (enh-code-bars) 0.2s (total 701s)
+[saved] C:\Users\yazaj\OneDrive\Desktop\sym\full_tested_plots_v4\curves_box_02.png
+[ok] cell 15 (enh-code-curves) 0.2s (total 701s)
+[saved] C:\Users\yazaj\OneDrive\Desktop\sym\full_tested_plots_v4\phase_scatter_canonical_viz_03.png
+[ok] cell 16 (enh-code-viz) 0.7s (total 702s)
+SYMBA ENHANCED LIE-SYMMETRY BENCHMARK -- BURGERS SUMMARY
+==============================================================================
+Shared baseline (raw data) relative-L2 : 0.0099
+
+arm                            order                            oracle  learned   vs base  t-var red
+----------------------------------------------------------------------------------------------------
+ALL merged                     refl->gali->scal->cole           0.0184   0.0458   -364.1%     100.0%
+Galilean only                  gali                             0.0009   0.1406  -1323.4%      96.4%
+Reflection only                refl                             0.0053   0.0053    +46.5%       0.0%
+Dilation only                  scal                             0.0341   0.0341   -245.5%     -13.9%
+Cole-Hopf only                 cole                             0.1097   0.1097  -1010.2%      99.0%
+Galilean closed-form           gali                             0.0009   0.0009    +90.7%      96.4%
+TOP-2 merged                   refl->gali                       0.0009   0.0009    +90.8%      96.4%
+----------------------------------------------------------------------------------------------------
+
+Selected ALL-merged order : reflect -> galilean -> scale -> colehopf
+TOP-2 merge               : reflect -> galilean
+  screen reflect->galilean->scale->colehopf       0.0489
+  screen reflect->scale->galilean->colehopf       0.1117
+  screen reflect->galilean->colehopf->scale       0.1409
+  screen reflect->scale->colehopf->galilean       0.9896
+  screen reflect->colehopf->galilean->scale       1.0160
+  screen reflect->colehopf->scale->galilean       1.0199
+
+Interpretation:
+- Oracle columns upper-bound each symmetry's ceiling with near-perfect parameters;
+  learned columns use only u0 (phase net + deterministic statistics).
+- Arms beating the shared baseline validate the SYMBA phase-shape thesis on Burgers under
+  the corresponding symmetry. By arXiv:2406.02809 Thm. 3, no further point symmetry exists
+  beyond the union tested here -- this benchmark covers the COMPLETE exploitable group.
+- Single-vs-merged gaps quantify complementarity; the screening table shows how much the
+  ORDER of exact symmetry maps alone matters (same group orbit, different conditioning).
+[ok] cell 17 (enh-code-summary) 0.0s (total 702s)
+
+FULL v3 RUN COMPLETE -- figures + logs in C:\Users\yazaj\OneDrive\Desktop\sym\full_tested_plots_v4 (total 702s)
